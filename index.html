@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="reveal-enabled">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="referrer" content="no-referrer" />
+<meta name="description" content="LEE. — 包装设计师作品集：白酒包装、瓶型结构与视觉方向。" />
+<title>LEE.｜Packaging Designer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2311100e'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' fill='%23f5f2ea' text-anchor='middle'%3EL%3C/text%3E%3Ccircle cx='48' cy='18' r='4' fill='%23a91b0d'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ink: #11100e;
+  --paper: #fff;
+  --pure: #fff;
+  --muted: #76736c;
+  --line: #c9c5bc;
+  --red: #8c241c;
+  --gold: #b39454;
+  --shell: min(1740px, calc(100vw - 96px));
+  --header-h: 86px;
+  --sans: "Space Grotesk", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Playfair Display", Iowan Old Style, Baskerville, "Times New Roman", "PingFang SC", serif;
+}
+* { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none; -ms-overflow-style: none;
+}
+html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+body { scrollbar-width: none; -ms-overflow-style: none; }
+body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+body {
+  margin: 0; padding-top: var(--header-h);
+  background: var(--paper); color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+button { color: inherit; font: inherit; }
+img { display: block; max-width: 100%; }
+.shell { width: var(--shell); margin-inline: auto; }
+[hidden] { display: none !important; }
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  position: fixed; top: 0; left: 0; z-index: 40;
+  width: 100vw; height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(24px, 4vw, 64px);
+  background: transparent;
+  pointer-events: none;
+  transition: height 520ms cubic-bezier(.16,1,.3,1);
+}
+.site-header.is-compact { height: clamp(52px,5vw,64px); }
+.brand-logo {
+  position: relative; z-index: 1;
+  display: flex; align-items: center;
+  pointer-events: auto;
+  opacity: .92;
+  transition: opacity 240ms ease, transform 240ms ease;
+}
+.brand-logo:hover { opacity: 1; transform: translateY(-1px); }
+.brand-logo img {
+  display: block; height: clamp(26px, 2.8vw, 40px);
+  width: auto; max-width: 200px;
+  object-fit: contain;
+}
+.desktop-nav {
+  position: relative; z-index: 1;
+  display: flex; gap: clamp(24px,3vw,48px); align-items: center;
+  font-size: clamp(13px,1.1vw,17px);
+  font-weight: 400; line-height: 1; letter-spacing: -.01em;
+  transform-origin: 100% 50%;
+  pointer-events: auto;
+  transition: transform 520ms cubic-bezier(.16,1,.3,1);
+}
+.site-header.is-compact .desktop-nav { transform: scale(.82); }
+.site-header.is-compact .brand-logo img { transform: scale(.88); }
+.nav-item {
+  position: relative; display: inline-flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 6px 4px; border: 0; background: none; cursor: pointer;
+  opacity: .5;
+  transition: opacity 220ms ease-out, text-shadow 220ms ease-out;
+}
+.nav-item.is-current { opacity: 1; }
+.site-header.is-compact .nav-item { opacity: .46; }
+.site-header.is-compact .nav-item.is-current { opacity: .72; }
+.site-header.is-compact .nav-item:hover,
+.site-header.is-compact .nav-item:focus-visible {
+  opacity: 1;
+  text-shadow: 0 0 12px rgba(255,255,255,.92), 0 0 2px rgba(255,255,255,.95);
+}
+.nav-item:hover { opacity: 1; }
+.nav-cn {
+  font-size: 10px; letter-spacing: .5em; text-indent: .5em;
+  color: var(--muted); opacity: 0; max-height: 0;
+  transform: translateY(-6px); overflow: hidden; margin-top: 0;
+  transition: opacity .38s cubic-bezier(.16,1,.3,1), transform .38s cubic-bezier(.16,1,.3,1), max-height .38s, margin-top .38s;
+}
+.nav-item.is-current .nav-cn { opacity: 1; max-height: 16px; transform: translateY(0); margin-top: 5px; }
+
+/* ---------- Hero ---------- */
+.home-feature { width: calc(100vw - 96px); margin-inline: auto; position: relative; }
+.home-feature__media {
+  position: relative; width: 100%; background: var(--pure);
+  aspect-ratio: 16 / 7.2;
+  display: grid; place-items: center;
+}
+.home-feature__copy {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0 24px; pointer-events: none;
+}
+.home-feature__title {
+  margin: 0; font-family: var(--sans);
+  font-size: clamp(64px, 11vw, 168px); font-weight: 500;
+  letter-spacing: -.05em; line-height: .92; color: var(--ink);
+}
+.home-feature__title .lee-char,
+.home-feature__title .lee-dot {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+/* ---------- Works 层架滚动 ---------- */
+.works-gallery-shell {
+  width: 100%; background: var(--pure);
+  padding: clamp(28px, 4vw, 64px) 0;
+}
+.works-gallery {
+  position: relative;
+  width: 100%; height: clamp(560px, 82vh, 900px);
+  overflow: hidden;
+  background: var(--pure);
+}
+.works-gallery::before,
+.works-gallery::after {
+  content: ''; position: absolute; left: 0; right: 0; z-index: 5;
+  height: 90px; pointer-events: none;
+}
+.works-gallery::before { top: 0; background: linear-gradient(to bottom, var(--pure), rgba(255,255,255,0)); }
+.works-gallery::after { bottom: 0; background: linear-gradient(to top, var(--pure), rgba(255,255,255,0)); }
+.works-gallery__cols {
+  display: flex; height: 100%; gap: 14px;
+  padding: 0 clamp(14px, 2vw, 28px);
+}
+.works-gallery__col {
+  flex: 1; min-width: 0; height: 100%;
+  position: relative; overflow: hidden;
+}
+.works-gallery__track {
+  display: flex; flex-direction: column; gap: 14px;
+  width: 100%; will-change: transform;
+  animation: works-track-up linear infinite;
+}
+.works-gallery__track--v1 { animation-duration: 34s; }
+.works-gallery__track--v2 { animation-duration: 46s; }
+.works-gallery__track--v3 { animation-duration: 30s; }
+.works-gallery__track--v4 { animation-duration: 52s; }
+.works-gallery__track--v5 { animation-duration: 40s; }
+.works-gallery.is-paused .works-gallery__track { animation-play-state: paused; }
+@keyframes works-track-up {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(0, -50%, 0); }
+}
+.works-gallery__card {
+  position: relative; display: block; width: 100%;
+  overflow: hidden; cursor: pointer;
+  border: 0; padding: 0;
+  background: var(--pure);
+  transition: transform 520ms cubic-bezier(.2,.7,.2,1);
+}
+.works-gallery__card img {
+  width: 100%; height: auto; display: block;
+  object-fit: contain; background: var(--pure);
+  transition: transform 800ms cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+}
+.works-gallery__card:hover { transform: translateY(-3px); }
+.works-gallery__card:hover img { transform: scale(1.05); }
+.works-gallery__veil {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; justify-content: flex-start; align-items: flex-end; padding: 16px 14px;
+  text-align: left;
+  background: linear-gradient(to top, rgba(255,255,255,.92) 0%, rgba(255,255,255,.55) 42%, transparent 70%);
+  opacity: 0; transition: opacity 400ms ease;
+  pointer-events: none;
+}
+.works-gallery__card:hover .works-gallery__veil { opacity: 1; }
+.works-gallery__veil-inner {
+  display: block; width: 100%; text-align: left;
+  transform: translateY(14px); transition: transform 400ms cubic-bezier(.16,1,.3,1);
+}
+.works-gallery__card:hover .works-gallery__veil-inner { transform: translateY(0); }
+.works-gallery__veil .g-en {
+  display: block; font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+  color: #8a8780; margin-bottom: 6px;
+}
+.works-gallery__veil .g-zh {
+  display: block; font-size: 15px; font-weight: 500; color: var(--ink);
+  letter-spacing: .04em;
+}
+.works-gallery__grip {
+  position: absolute; z-index: 6; right: 16px; top: 50%;
+  transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.works-gallery__grip i {
+  display: block; width: 2px; height: 26px; border-radius: 2px;
+  background: rgba(17,16,14,.14);
+}
+
+/* ---------- 右侧隐藏式拖动条 ---------- */
+.edge-drag {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 90;
+  width: 46px;
+  pointer-events: none;
+}
+.edge-drag__track {
+  position: absolute; top: 50%; right: 10px;
+  transform: translateY(-50%);
+  width: 4px; height: min(420px, 62vh);
+  border-radius: 99px;
+  background: rgba(17,16,14,.07);
+  opacity: 0;
+  transition: opacity .25s ease, width .25s ease, background .25s ease;
+}
+.edge-drag__thumb {
+  position: absolute; left: 0; right: 0; top: 0;
+  height: 84px; border-radius: 99px;
+  background: rgba(17,16,14,.32);
+  cursor: grab;
+  pointer-events: auto;
+  transition: background .2s ease;
+}
+.edge-drag__thumb:hover { background: rgba(17,16,14,.5); }
+.edge-drag.is-dragging .edge-drag__thumb { background: rgba(17,16,14,.55); cursor: grabbing; }
+.edge-drag.is-visible .edge-drag__track {
+  opacity: 1; width: 6px; background: rgba(17,16,14,.12);
+}
+@media (hover: none), (pointer: coarse), (max-width: 900px) {
+  .edge-drag { display: none; }
+}
+
+/* ---------- Reveal ---------- */
+.scroll-reveal-item { min-width: 0; }
+html.reveal-enabled .scroll-reveal-item {
+  opacity: .02;
+  transform: translate3d(0, var(--reveal-y), 0) scale(.988);
+  transform-origin: 50% 100%;
+  transition: opacity 650ms cubic-bezier(.22,1,.36,1), transform 1100ms cubic-bezier(.22,1,.36,1);
+}
+html.reveal-enabled .scroll-reveal-item.is-revealed {
+  opacity: 1; transform: translate3d(0,0,0) scale(1);
+}
+html.reveal-enabled .scroll-reveal-item.is-retreating:not(.is-revealed) {
+  opacity: .02;
+  transform: translate3d(0, -56px, 0) scale(.94);
+  transform-origin: 50% 50%;
+}
+
+/* ---------- Archive view ---------- */
+.brand-main { padding-top: clamp(28px, 4vw, 64px); }
+.archive-hero { width: var(--shell); margin-inline: auto; text-align: center; padding: clamp(48px,6vw,96px) 0 clamp(28px,3vw,48px); }
+.archive-hero__title {
+  margin: 0; font-size: clamp(40px,5vw,84px); font-weight: 300;
+  letter-spacing: -.04em; line-height: 1;
+}
+.archive-hero__sub {
+  margin-top: 18px; font-size: 12px; letter-spacing: .4em; text-indent: .4em;
+  color: var(--muted); text-transform: uppercase;
+}
+.archive-hero__desc {
+  margin: clamp(28px,3vw,44px) auto 0; max-width: 640px;
+  font-size: 15px; font-weight: 300; line-height: 1.9; color: #55524b;
+}
+.scatter-story {
+  position: relative; width: 100vw; height: 260vh;
+  margin-left: calc(50% - 50vw); background: #fff;
+}
+.scatter-story__stage { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; background: #fff; }
+.scatter-story__frame {
+  position: absolute; inset: 0; width: 100%; height: 100%; margin: 0;
+  display: grid; place-items: center;
+  opacity: 0; transform: scale(.7); transform-origin: 50% 50%;
+  will-change: opacity, transform; pointer-events: none;
+}
+.scatter-story__frame--intro { opacity: 1; transform: scale(1); }
+.scatter-story__frame--intro .frame-copy { text-align: center; padding: 0 24px; }
+.scatter-story__frame--intro .frame-copy h2 {
+  margin: 0 0 26px; font-size: clamp(26px,3vw,44px); font-weight: 300; letter-spacing: -.02em;
+}
+.scatter-story__frame--intro .frame-copy p {
+  margin: 0 auto; max-width: 560px; font-size: 14px; line-height: 2; color: #55524b; font-weight: 300;
+}
+.scatter-story__frame--outro .frame-copy { text-align: center; padding: 0 24px; }
+.scatter-story__frame--outro .frame-copy h2 {
+  margin: 0; font-family: var(--serif); font-style: italic;
+  font-size: clamp(28px,3.6vw,54px); font-weight: 400; letter-spacing: .02em;
+}
+.scatter-story__frame--outro .frame-copy p {
+  margin: 26px 0 0; font-size: 14px; letter-spacing: .5em; text-indent: .5em; color: #55524b;
+}
+.scatter-stage {
+  position: absolute; inset: 0;
+  overflow: hidden; background: #fff;
+  isolation: isolate; perspective: 1250px;
+  cursor: grab; touch-action: pan-y pinch-zoom;
+}
+.scatter-stage.is-dragging { cursor: grabbing; }
+.scatter-stage__orbit {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  transform-style: preserve-3d; opacity: 0;
+  will-change: opacity;
+  transition: opacity 520ms cubic-bezier(.22,1,.36,1);
+}
+.scatter-stage.is-initialized .scatter-stage__orbit { opacity: 1; }
+.scatter-stage__item {
+  position: relative; width: 100%; margin: 0; padding: 0;
+  border: 0; background: transparent; cursor: zoom-in;
+}
+.scatter-stage__float { display: block; width: 100%; }
+.scatter-stage__item img {
+  position: relative; display: block;
+  width: 100%; height: auto; max-height: 72vh;
+  object-fit: contain; background: transparent;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  transform: translateZ(.01px); will-change: transform;
+  transition: transform 620ms cubic-bezier(.16,1,.3,1), opacity 420ms cubic-bezier(.16,1,.3,1);
+  pointer-events: none;
+}
+.scatter-stage.is-ready:not(.is-flat) .scatter-stage__item {
+  position: absolute; left: 50%; top: 50%;
+  width: var(--sphere-w, 104px);
+  opacity: calc(var(--scatter-item-opacity, 0) * var(--sphere-depth-opacity, 1));
+  transform: var(--sphere-live-transform) scale(var(--scatter-item-scale, .72));
+  transform-origin: 50% 50%;
+  z-index: var(--sphere-z, 1);
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  transform-style: preserve-3d; will-change: transform, opacity;
+  transition: opacity 360ms cubic-bezier(.16,1,.3,1), width 760ms cubic-bezier(.16,1,.3,1);
+}
+.scatter-stage.is-collapsing .scatter-stage__item {
+  transition: opacity 360ms cubic-bezier(.16,1,.3,1), transform 760ms cubic-bezier(.16,1,.3,1), width 760ms cubic-bezier(.16,1,.3,1);
+}
+.scatter-stage.is-ready .scatter-stage__float {
+  animation: scatter-float var(--scatter-float-duration, 7s) ease-in-out var(--scatter-float-delay, 0s) infinite alternate;
+}
+.scatter-stage__item:hover img { transform: scale(1.09); }
+.scatter-stage.has-selection .scatter-stage__item:not(.is-selected) { opacity: .62 !important; pointer-events: auto; }
+.scatter-stage.is-focus .scatter-stage__item:not(.is-selected) {
+  opacity: .16 !important;
+  filter: saturate(.58) blur(.45px);
+  pointer-events: none;
+}
+.scatter-stage.is-focus .scatter-stage__item.is-selected {
+  left: 50%; top: 50%;
+  width: min(62vw, 820px); opacity: 1 !important;
+  transform: translate(-50%,-50%) translateZ(0) !important;
+  z-index: 520; cursor: zoom-out;
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.scatter-stage__item.is-selected .scatter-stage__float { animation-play-state: paused; }
+.scatter-stage__item.is-selected img { max-height: 78vh; transform: none; }
+@keyframes scatter-float {
+  from { transform: translate3d(-3px,-4px,0) rotate(-.35deg); }
+  to { transform: translate3d(4px,5px,0) rotate(.35deg); }
+}
+@keyframes scatter-core-drift {
+  0% { transform: translate(-50%,-50%) translate3d(-2px,2px,0) scale(.988); }
+  55% { transform: translate(-50%,-50%) translate3d(2px,-1px,0) scale(1.012); }
+  100% { transform: translate(-50%,-50%) translate3d(0,2px,0) scale(.996); }
+}
+@keyframes scatter-core-scan { from { background-position: 0 -18px; } to { background-position: 0 18px; } }
+@keyframes scatter-core-static {
+  0%, 72%, 76%, 100% { opacity: .52; transform: scale(1); }
+  73% { opacity: .16; transform: scaleX(1.05) scaleY(.98); }
+  74% { opacity: .72; transform: translateX(-2px); }
+  75% { opacity: .24; transform: translateX(1px); }
+}
+@keyframes scatter-core-glitch-a {
+  0%, 68%, 72%, 100% { opacity: 0; clip-path: inset(0 0 100% 0); transform: none; }
+  69% { opacity: .35; clip-path: inset(18% 0 58% 0); transform: translateX(5px) scaleX(1.03); }
+  70% { opacity: .16; clip-path: inset(61% 0 18% 0); transform: translateX(-4px); }
+  71% { opacity: .28; clip-path: inset(39% 0 44% 0); transform: translateX(2px); }
+}
+@keyframes scatter-core-glitch-b {
+  0%, 84%, 88%, 100% { opacity: 0; clip-path: inset(100% 0 0 0); transform: none; }
+  85% { opacity: .24; clip-path: inset(8% 0 76% 0); transform: translateX(-5px) skewX(-2deg); }
+  86% { opacity: .12; clip-path: inset(48% 0 30% 0); transform: translateX(4px); }
+  87% { opacity: .2; clip-path: inset(73% 0 8% 0); transform: translateX(-2px); }
+}
+.scatter-hint {
+  position: absolute; z-index: 600; left: 50%; bottom: 26px;
+  transform: translateX(-50%);
+  font-size: 11px; letter-spacing: .3em; text-indent: .3em; color: #9a968e;
+  pointer-events: none; transition: opacity 400ms ease;
+}
+.scatter-stage.has-selection ~ .scatter-hint,
+.scatter-story__frame.is-active-frame .scatter-hint.is-hidden-hint { opacity: 0; }
+
+/* ---------- About ---------- */
+.about-main {
+  width: min(1080px, 90vw);
+  margin-inline: auto;
+  padding: clamp(56px, 8vh, 96px) 0 clamp(80px, 10vw, 150px);
+}
+.about-portrait-wrap { display: grid; place-items: center; }
+.about-portrait {
+  width: clamp(150px, 16vw, 210px); aspect-ratio: 1; border-radius: 50%;
+  object-fit: cover; filter: grayscale(1) contrast(1.12);
+  border: 1px solid rgba(17,16,14,.12); padding: 6px;
+}
+.about-name { margin: 30px 0 0; text-align: center; font-size: clamp(30px,3vw,44px); font-weight: 300; letter-spacing: -.02em; }
+.about-role { margin: 14px 0 0; text-align: center; font-size: 11px; letter-spacing: .34em; text-indent: .34em; text-transform: uppercase; color: var(--muted); }
+.about-rule { width: 44px; height: 1px; background: rgba(17,16,14,.16); margin: 40px auto; }
+.about-motto { text-align: center; }
+.about-motto .cn {
+  font-size: clamp(18px,2vw,26px); font-weight: 300; letter-spacing: .18em;
+  color: #22211e; line-height: 1.9; margin: 0;
+}
+.about-motto .en {
+  margin: 14px 0 0; font-family: var(--serif); font-style: italic;
+  font-size: 14px; letter-spacing: .3em; color: #77746c;
+}
+.about-bio {
+  margin: 48px auto 0; max-width: 620px;
+  font-size: 15px; font-weight: 300; line-height: 2; color: #55524b; text-align: center;
+}
+.about-contact { margin-top: clamp(64px,7vw,100px); text-align: center; }
+.about-contact .label { font-size: 10px; letter-spacing: .3em; text-indent: .3em; text-transform: uppercase; color: #8a8780; }
+.about-contact .phone {
+  display: inline-block; margin: 22px 0 0;
+  font-size: clamp(22px,2.6vw,34px); font-weight: 300; letter-spacing: .02em;
+  border-bottom: 1px solid rgba(17,16,14,.22); padding-bottom: 8px;
+  transition: color 220ms ease, border-color 220ms ease;
+}
+.about-contact .phone:hover { color: var(--red); border-color: var(--red); }
+.about-codes { display: flex; justify-content: center; gap: clamp(40px,6vw,88px); margin-top: clamp(48px,5vw,72px); }
+.about-code { display: flex; flex-direction: column; align-items: center; }
+.about-code img {
+  width: clamp(104px,11vw,136px); aspect-ratio: 1; object-fit: cover;
+  border: 1px solid rgba(17,16,14,.1); border-radius: 12px; padding: 6px; background: #fff;
+}
+.about-code span { margin-top: 16px; font-size: 10px; letter-spacing: .24em; text-indent: .24em; text-transform: uppercase; color: #77746c; }
+
+/* ---------- Detail layer ---------- */
+.detail-layer {
+  position: fixed; inset: 0; z-index: 80;
+  background: rgba(252,252,252,.97);
+  overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: none; -ms-overflow-style: none;
+  opacity: 0; animation: detail-in .5s cubic-bezier(.16,1,.3,1) forwards;
+}
+.detail-layer::-webkit-scrollbar { width: 0; height: 0; display: none; }
+@keyframes detail-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.detail-inner { width: var(--shell); margin-inline: auto; padding: clamp(90px,10vh,130px) 0 60px; }
+.detail-topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 16px; border-bottom: 1px solid rgba(17,16,14,.1); margin-bottom: clamp(40px,5vh,64px);
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: #77746c;
+}
+.detail-close {
+  border: 1px solid rgba(17,16,14,.2); background: none; border-radius: 999px;
+  padding: 8px 18px; font-size: 11px; letter-spacing: .18em; cursor: pointer;
+  transition: background 240ms ease, color 240ms ease;
+}
+.detail-close:hover { background: var(--ink); color: #fff; }
+.detail-hero {
+  margin: 0 auto; width: min(1100px, 100%);
+  background: #f7f6f4; border: 1px solid rgba(17,16,14,.06);
+  display: grid; place-items: center; padding: clamp(20px,3vw,48px);
+}
+.detail-hero img { width: 100%; height: auto; max-height: 66vh; object-fit: contain; }
+.detail-heading { margin: clamp(48px,6vh,80px) auto 0; width: min(860px,100%); text-align: center; }
+.detail-heading .cat { font-size: 11px; letter-spacing: .34em; text-indent: .34em; text-transform: uppercase; color: #8a8780; }
+.detail-heading h1 {
+  margin: 18px 0 0; font-size: clamp(30px,4vw,54px); font-weight: 400; letter-spacing: -.03em; line-height: 1.15;
+}
+.detail-meta {
+  margin: clamp(36px,4vh,52px) auto 0; width: min(860px,100%);
+  display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 20px;
+  padding: 26px 0; border-top: 1px solid rgba(17,16,14,.1); border-bottom: 1px solid rgba(17,16,14,.1);
+  text-align: center;
+}
+.detail-meta .k { display: block; font-size: 10px; letter-spacing: .26em; text-indent: .26em; text-transform: uppercase; color: #8a8780; margin-bottom: 10px; }
+.detail-meta .v { font-size: 15px; font-weight: 500; letter-spacing: .04em; }
+.detail-desc {
+  margin: clamp(44px,5vh,64px) auto 0; width: min(680px,100%);
+  font-size: clamp(16px,1.4vw,20px); font-weight: 300; line-height: 1.9;
+  color: #4b4a46; text-align: center;
+}
+.detail-sign {
+  margin-top: clamp(64px,8vh,100px); text-align: center;
+  font-size: 10px; letter-spacing: .3em; text-indent: .3em; text-transform: uppercase; color: #a5a29a;
+}
+
+/* ---------- Misc ---------- */
+.fade-in { animation: fadeInAnim .6s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes fadeInAnim { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+
+</style>
+</head>
+<body class="work-page">
+
+<header class="site-header" id="site-header">
+  <a class="brand-logo" href="#" aria-label="ECHO.lab" id="brand-logo">
+    <img src="echo-logo.png" alt="ECHO.lab" />
+  </a>
+  <nav class="desktop-nav" aria-label="主导航">
+    <button class="nav-item is-current" data-view="works"><span>WORKS</span><span class="nav-cn">作品</span></button>
+    <button class="nav-item" data-view="archive"><span>ARCHIVE</span><span class="nav-cn">档案</span></button>
+    <button class="nav-item" data-view="about"><span>ABOUT</span><span class="nav-cn">关于</span></button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ WORKS 首页 ============ -->
+  <div id="view-works" class="view fade-in">
+
+    <section class="home-feature" aria-label="首页动态视觉">
+      <div class="home-feature__media">
+        <div class="home-feature__copy">
+          <h1 class="home-feature__title" aria-label="LEE.">
+            <span class="lee-char" style="--i:0">L</span><span class="lee-char" style="--i:1">E</span><span class="lee-char" style="--i:2">E</span><span class="lee-dot" style="--i:3">.</span>
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <section class="works-gallery-shell" aria-label="作品层架">
+      <div class="works-gallery" id="works-gallery">
+        <div class="works-gallery__cols" id="works-gallery-cols"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ ARCHIVE 素材星球 ============ -->
+  <div id="view-archive" class="view" hidden>
+    <div class="brand-main">
+      <section class="archive-hero shell">
+        <h2 class="archive-hero__title">ARCHIVE</h2>
+        <p class="archive-hero__sub">Project Archive · 项目档案</p>
+        <p class="archive-hero__desc">
+          十五款白酒包装的结构、材质与光影研究。向下滚动，进入作品星球——
+          每一件作品都是一次器形、釉色与留白的实验。
+        </p>
+      </section>
+
+      <section class="scatter-story" data-scatter-story>
+        <div class="scatter-story__stage">
+          <figure class="scatter-story__frame scatter-story__frame--intro">
+            <div class="frame-copy">
+              <h2>穿越逆境 · 直抵繁星</h2>
+              <p>从酿初的深釉蓝到天启的冰蓝流线，每一瓶都是一次抵达。</p>
+            </div>
+          </figure>
+          <div class="scatter-story__frame scatter-stage" data-scatter-stage>
+            <div class="scatter-stage__orbit"></div>
+            <p class="scatter-hint">拖拽旋转 · 点击放大</p>
+          </div>
+          <figure class="scatter-story__frame scatter-story__frame--outro">
+            <div class="frame-copy">
+              <h2>Per Aspera Ad Astra</h2>
+              <p>循此苦旅 · 以达天际</p>
+            </div>
+          </figure>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <div id="view-about" class="view" hidden>
+    <section class="about-main">
+      <div class="about-portrait-wrap">
+        <img class="about-portrait" id="about-portrait" alt="LEE. 个人照片" loading="lazy" />
+      </div>
+      <h2 class="about-name">LEE.</h2>
+      <p class="about-role">Packaging Designer &amp; Art Director</p>
+      <div class="about-rule"></div>
+      <div class="about-motto">
+        <p class="cn">循此苦旅，以达天际。<br />穿越逆境，直抵繁星。</p>
+        <p class="en">Per Aspera Ad Astra</p>
+      </div>
+      <p class="about-bio">
+        致力于将东方文化意象与极简的现代工业美学融合，探索器皿形制、材质纹理与光影留白之间的张力。
+        主营酒类包装的结构设计、瓶型开发与品牌视觉方向。
+      </p>
+      <div class="about-contact">
+        <p class="label">Inquiry · 商务合作</p>
+        <a class="phone" href="tel:15198284437" rel="noopener">+86 151 9828 4437</a>
+      </div>
+      <div class="about-codes">
+        <div class="about-code">
+          <img id="wechat-code" alt="微信二维码" loading="lazy" />
+          <span>WeChat</span>
+        </div>
+        <div class="about-code">
+          <img id="redbook-code" alt="小红书二维码" loading="lazy" />
+          <span>Redbook</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<!-- ============ 项目详情浮层 ============ -->
+<div class="detail-layer" id="detail-layer" hidden title="点击空白处或按 Esc 返回">
+  <div class="detail-inner">
+    <div class="detail-topbar">
+      <span>Archive <span id="detail-year">2026</span></span>
+      <button class="detail-close" id="detail-close" type="button">Close ✕</button>
+    </div>
+    <figure class="detail-hero">
+      <img id="detail-img" alt="" />
+    </figure>
+    <div class="detail-heading">
+      <p class="cat" id="detail-category"></p>
+      <h1 id="detail-title"></h1>
+    </div>
+    <div class="detail-meta">
+      <div><span class="k">Client</span><span class="v" id="detail-client"></span></div>
+      <div><span class="k">Direction</span><span class="v">Structure &amp; CMF</span></div>
+      <div><span class="k">Year</span><span class="v" id="detail-year2"></span></div>
+    </div>
+    <p class="detail-desc" id="detail-desc"></p>
+    <p class="detail-sign">Design &amp; Direction by LEE.</p>
+  </div>
+</div>
+
+<!-- ============ 右侧隐藏式拖动条 ============ -->
+<div class="edge-drag" id="edge-drag" aria-hidden="true">
+  <div class="edge-drag__track" id="edge-drag-track">
+    <div class="edge-drag__thumb" id="edge-drag-thumb"></div>
+  </div>
+</div>
+
+<script>
+(() => {
+'use strict';
+
+/* ================= 数据 ================= */
+const PROJECTS_DATA = [
+  { id: 'p01', src: 'https://i.ibb.co/vCYqQ1kz/01.png', title: '酿初 10年 / 商务典藏', client: '京东京造', category: 'Packaging', year: '2025', desc: '深釉蓝立体浮雕搭配哑光波浪肌理，将十年流转具象化；书法字与金色浮雕瓶盖相呼应，传递沉稳内敛的商务礼赠品质。' },
+  { id: 'p02', src: 'https://i.ibb.co/VsvdTMD/02.png', title: '西凤酒 / 天启', client: '西凤酒', category: 'Cultural', year: '2025', desc: '极简流线型凤翼棱角瓶型，通透冰蓝与镜面微光相衬，打破传统凤香白酒视觉框架，诠释新生代东方仪轨。' },
+  { id: 'p03', src: 'https://i.ibb.co/TD4hKGPD/03.png', title: '酱香小习酒 / 欢聚版', client: '习酒', category: 'Structural', year: '2025', desc: '圆角磨砂通透小瓶，波普风插画定格欢聚瞬间，用轻量化视觉语言打破传统酱酒的沉重认知。' },
+  { id: 'p05', src: 'https://i.ibb.co/zW0V6kbs/06.png', title: '金钻习酒 / GOLDEN DIAMOND', client: '习酒', category: 'Limited', year: '2026', desc: '钻石切割工艺贯穿瓶身与瓶盖，香槟金拉丝与立体切面带来丰富光影折射，诠释轻奢珠宝美学。' },
+  { id: 'p06', src: 'https://i.ibb.co/LDkwhNxq/07.png', title: '华鉴 / HUA JIAN', client: '华鉴', category: 'Packaging', year: '2026',  desc: '瓶盖以字母“D”呼应钻石溯源，高透水晶方瓶搭配中式烫金书法与沙漏印记，尽显经年窖藏韵致。' },
+  { id: 'p07', src: 'https://i.ibb.co/HTkRsVVN/08.png', title: '汉武御 / 问天', client: '汉武御', category: 'Identity', year: '2025', desc: '磨砂黑扁平器型与高饱和朱雀红漆碰撞，中央同心圆拉丝金徽成为视觉锚点，气韵浑厚。' },
+  { id: 'p08', src: 'https://i.ibb.co/YF0TcFbn/09.png', title: '口子窖 / 兼香竹影', client: '口子窖', category: 'Cultural', year: '2025', desc: '汲取竹节自然弧线，渐变通透翠玉质感与烫金印章交织，表达山水诗性与自然酿造之韵。' },
+  { id: 'p09', src: 'https://i.ibb.co/SDhmtWMn/10.png', title: '伊力特 / 大雪无痕', client: '伊力特', category: 'Structural', year: '2024', desc: '如天山褶皱般起伏的立面，柔白哑光器皿在光线映照下纯净而肃穆，尽显辽阔静谧之境。' },
+  { id: 'p10', src: 'https://i.ibb.co/0jdqDBtk/11.png', title: '宋代官窖 / 高尔夫球酒', client: '宋代官窖', category: 'Design', year: '2024', desc: '六角宋瓷古意与现代高尔夫微凹曲面融会贯通，乳白瓷釉搭配纯金浮雕，优雅而稳健。' },
+  { id: 'p11', src: 'https://i.ibb.co/gbD53RqH/12.png', title: '海之蓝 / 幽蓝深境', client: '洋河', category: 'Packaging', year: '2024', desc: '流线水滴形制与通透渐变蔚蓝琉璃，重构经典白酒视觉语境，散发清爽深邃的当代美学。' },
+  { id: 'p12', src: 'https://i.ibb.co/7dDxvW16/13.png', title: '杜康 / 雅青复古香', client: '杜康', category: 'Cultural', year: '2023', desc: '重塑传统青铜提梁器型，将烫金饕餮纹嵌于典雅粉青瓷身，兼具古雅庄重与现代表达。' },
+  { id: 'p13', src: 'https://i.ibb.co/N6BXSCJ5/14.png', title: '摘要 / 书卷金简', client: '金沙', category: 'Identity', year: '2024', desc: '以温润白瓷书卷为体，点缀凹版烫金极简印章，文人雅士的气节与纯粹尽在此中。' },
+  { id: 'p14', src: 'https://i.ibb.co/6R6NPknC/15.png', title: '国窖 1573 / 荣耀红', client: '泸州老窖', category: 'Limited', year: '2023', desc: '通透深红琉璃与五角星金徽映衬，融合现代工艺与百年酿造底蕴，张力十足。' }
+];
+
+const ABOUT_ASSETS = {
+  portrait: 'https://i.ibb.co/Y4kBKK3b/Image-1.png',
+  wechat: 'https://i.ibb.co/FqzqPYm0/image.jpg',
+  redbook: 'https://i.ibb.co/S47yV2XK/0ee3f14d743b55a9fa2c763158e23cbf.jpg'
+};
+
+/* ================= 工具 ================= */
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const clamp01 = (v) => Math.max(0, Math.min(1, v));
+const smoothStep = (v) => { const p = clamp01(v); return p * p * (3 - 2 * p); };
+
+/* ================= Header ================= */
+const siteHeader = $('#site-header');
+let headerScrollFrame;
+const syncHeaderState = () => {
+  headerScrollFrame = undefined;
+  siteHeader?.classList.toggle('is-compact', window.scrollY > 24);
+};
+window.addEventListener('scroll', () => {
+  if (headerScrollFrame) return;
+  headerScrollFrame = requestAnimationFrame(syncHeaderState);
+}, { passive: true });
+syncHeaderState();
+
+/* ================= LEE. 滚动出场动效 ================= */
+(() => {
+  const heroMedia = document.querySelector('.home-feature__media');
+  const leeChars = [...document.querySelectorAll('.home-feature__title .lee-char, .home-feature__title .lee-dot')];
+  if (!heroMedia || !leeChars.length) return;
+  let leeFrame;
+  const updateLeeExit = () => {
+    leeFrame = undefined;
+    const heroHeight = Math.max(heroMedia.offsetHeight, 1);
+    const progress = clamp01(window.scrollY / (heroHeight * .82));
+    const ease = smoothStep(progress);
+    leeChars.forEach((ch, i) => {
+      const order = i / (leeChars.length - 1 || 1);
+      const local = smoothStep(clamp01(ease * 1.25 - order * .28));
+      const dir = i % 2 === 0 ? 1 : -1;
+      ch.style.opacity = String(1 - local);
+      ch.style.transform = `translate3d(${(dir * 26 * local).toFixed(2)}px, ${(-96 * local).toFixed(2)}px, 0) rotate(${(dir * 15 * local).toFixed(2)}deg) scale(${(1 - .07 * local).toFixed(4)})`;
+      ch.style.filter = `blur(${(3.4 * local).toFixed(2)}px)`;
+    });
+  };
+  const requestLee = () => { if (!leeFrame) leeFrame = requestAnimationFrame(updateLeeExit); };
+  window.addEventListener('scroll', requestLee, { passive: true });
+  window.addEventListener('resize', requestLee, { passive: true });
+  window.addEventListener('viewchange', requestLee);
+  updateLeeExit();
+})();
+
+/* ================= 视图切换 ================= */
+const views = {
+  works: $('#view-works'),
+  archive: $('#view-archive'),
+  about: $('#view-about')
+};
+let currentView = 'works';
+const viewTops = new Map();
+Object.entries(views).forEach(([name, el]) => viewTops.set(name, () => el.offsetTop));
+
+function switchView(target, push = true) {
+  if (!views[target]) return;
+  if (currentView === target && !views[target].hidden) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+  const wasHidden = views[target].hidden;
+  Object.entries(views).forEach(([name, el]) => { el.hidden = name !== target; });
+  currentView = target;
+  $$('.nav-item').forEach((btn) => btn.classList.toggle('is-current', btn.dataset.view === target));
+  if (push && location.hash !== `#/${target}`) history.pushState({ view: target }, '', `#/${target}`);
+  if (wasHidden) {
+    views[target].classList.remove('fade-in');
+    void views[target].offsetWidth;
+    views[target].classList.add('fade-in');
+    // 立即同步滚动到位（html 的 scroll-behavior:smooth 会把 scrollTo 变成动画，
+    // 导致后续显现判定的 rect 全部失真；改用强制重排后的 instant 滚动）
+    const y = viewTops.get(target)() - 0;
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, y);
+    requestAnimationFrame(() => {
+      document.documentElement.style.scrollBehavior = '';
+    });
+  }
+  window.dispatchEvent(new CustomEvent('viewchange', { detail: { view: target } }));
+}
+$$('.nav-item').forEach((btn) => btn.addEventListener('click', () => switchView(btn.dataset.view)));
+window.addEventListener('popstate', () => {
+  const name = location.hash.replace('#/', '') || 'works';
+  switchView(name, false);
+});
+const initialHash = location.hash.replace('#/', '');
+if (initialHash && views[initialHash]) switchView(initialHash, false);
+
+/* ================= 详情浮层 ================= */
+const detailLayer = $('#detail-layer');
+function openDetail(project) {
+  $('#detail-img').src = project.src;
+  $('#detail-img').alt = project.title;
+  $('#detail-title').textContent = project.title;
+  $('#detail-client').textContent = project.client;
+  $('#detail-category').textContent = project.category;
+  $('#detail-year').textContent = project.year;
+  $('#detail-year2').textContent = project.year;
+  $('#detail-desc').textContent = project.desc;
+  detailLayer.hidden = false;
+  detailLayer.scrollTop = 0;
+  document.body.style.overflow = 'hidden';
+  $('#detail-close').focus({ preventScroll: true });
+}
+function closeDetail() {
+  detailLayer.hidden = true;
+  document.body.style.overflow = '';
+}
+$('#detail-close').addEventListener('click', closeDetail);
+detailLayer.addEventListener('click', (e) => { if (e.target === detailLayer) closeDetail(); });
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !detailLayer.hidden) closeDetail();
+});
+
+/* ================= 作品层架渲染（黑色无缝滚动） ================= */
+const worksGallery = $('#works-gallery');
+const worksGalleryCols = $('#works-gallery-cols');
+function renderWorksGallery() {
+  if (!worksGallery || !worksGalleryCols) return;
+  const colCount = window.innerWidth < 992 ? 2 : (window.innerWidth < 1300 ? 3 : 5);
+  const speedCls = ['works-gallery__track--v1','works-gallery__track--v2','works-gallery__track--v3','works-gallery__track--v4','works-gallery__track--v5'];
+  const delays = ['-9s','-34s','-20s','-46s','-12s'];
+worksGalleryCols.innerHTML = '';
+  const buildCards = (list, isClone) => list.map((p) => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'works-gallery__card';
+    if (isClone) { card.setAttribute('aria-hidden', 'true'); card.tabIndex = -1; }
+    else card.setAttribute('aria-label', `查看项目：${p.title}`);
+    const img = document.createElement('img');
+    img.src = p.src; img.alt = p.title; img.loading = 'lazy'; img.decoding = 'async';
+    const veil = document.createElement('span');
+    veil.className = 'works-gallery__veil';
+    veil.innerHTML = `<span class="works-gallery__veil-inner"><span class="g-en">${p.client} · ${p.year}</span><span class="g-zh">${p.title}</span></span>`;
+    card.append(img, veil);
+    if (!isClone) card.addEventListener('click', () => openDetail(p));
+    return card;
+  });
+  for (let i = 0; i < colCount; i++) {
+    const col = document.createElement('div');
+    col.className = 'works-gallery__col';
+    const track = document.createElement('div');
+    track.className = `works-gallery__track ${speedCls[i % 5]}`;
+    track.style.animationDelay = delays[i % 5];
+    const chunk = PROJECTS_DATA.filter((_, idx) => idx % colCount === i);
+    if (!chunk.length) continue;
+    buildCards(chunk, false).forEach((c) => track.appendChild(c));
+    buildCards(chunk, true).forEach((c) => track.appendChild(c));
+    col.appendChild(track);
+    worksGalleryCols.appendChild(col);
+  }
+  worksGallery.classList.remove('is-paused');
+  if ('ontouchstart' in window) {
+    let touchStartY = 0;
+    const shiftTracks = (deltaY) => {
+      worksGalleryCols.querySelectorAll('.works-gallery__track').forEach((track) => {
+        const anim = track.getAnimations()[0];
+        if (!anim) return;
+        const dur = anim.effect.getComputedTiming().duration;
+        let t = (anim.currentTime || 0) + deltaY;
+        anim.currentTime = t < 0 ? dur + (t % dur) : t % dur;
+      });
+    };
+    worksGalleryCols.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+    worksGalleryCols.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      const dy = touchStartY - e.touches[0].clientY;
+      shiftTracks(dy * 14);
+      touchStartY = e.touches[0].clientY;
+    }, { passive: false });
+  }
+}
+let worksResizeTimer;
+window.addEventListener('resize', () => {
+  window.clearTimeout(worksResizeTimer);
+  worksResizeTimer = window.setTimeout(renderWorksGallery, 240);
+}, { passive: true });
+window.addEventListener('viewchange', () => requestAnimationFrame(renderWorksGallery));
+renderWorksGallery();
+
+/* ================= About 图片注入 ================= */
+$('#about-portrait').src = ABOUT_ASSETS.portrait;
+$('#wechat-code').src = ABOUT_ASSETS.wechat;
+$('#redbook-code').src = ABOUT_ASSETS.redbook;
+
+/* ================= 滚动显现系统（精简版） ================= */
+(() => {
+  const body = document.body;
+  const detailRevealItems = [...document.querySelectorAll('.about-portrait-wrap, .about-motto, .about-bio, .about-contact, .about-codes, .archive-hero')];
+  const revealItems = [...detailRevealItems];
+  let revealObserver;
+  let revealResizeTimer;
+  let revealScrollDirection = 'down';
+  let lastRevealScrollY = window.scrollY;
+  let revealResetFrame;
+  let revealGroups = new Map();
+
+  const updateRevealScrollDirection = () => {
+    const currentScrollY = window.scrollY;
+    if (Math.abs(currentScrollY - lastRevealScrollY) > 2) {
+      revealScrollDirection = currentScrollY > lastRevealScrollY ? 'down' : 'up';
+      lastRevealScrollY = currentScrollY;
+    }
+    if (revealScrollDirection !== 'up' || revealResetFrame) return;
+    revealResetFrame = requestAnimationFrame(() => {
+      revealResetFrame = undefined;
+      revealGroups.forEach((group) => {
+        const groupTop = Math.min(...group.map((item) => item.getBoundingClientRect().top));
+        if (groupTop <= window.innerHeight) return;
+        group.forEach((item) => item.classList.remove('is-revealed'));
+      });
+    });
+  };
+
+  window.addEventListener('scroll', updateRevealScrollDirection, { passive: true });
+
+  const addRevealGroup = (groupName, items) => {
+    const visibleItems = items.filter((item) => !item.classList.contains('is-hidden'));
+    if (!visibleItems.length) return;
+    visibleItems.forEach((item, column) => {
+      item.classList.add('scroll-reveal-item');
+      item.dataset.revealGroup = groupName;
+      item.dataset.revealColumn = String(column);
+    });
+    revealGroups.set(groupName, visibleItems);
+  };
+
+  const prepareRevealGroups = () => {
+    revealGroups = new Map();
+
+    document.querySelectorAll('.archive-hero').forEach((item, index) => {
+      addRevealGroup(`archive-hero-${index}`, [item]);
+    });
+    document.querySelectorAll('.about-portrait-wrap, .about-motto, .about-bio, .about-contact, .about-codes').forEach((item, index) => {
+      addRevealGroup(`about-section-${index}`, [item]);
+    });
+
+    revealGroups.forEach((items, groupName) => addRevealGroup(groupName, items));
+  };
+
+  const setScrollReveal = (reduceMotion) => {
+    revealObserver?.disconnect();
+    revealObserver = undefined;
+    prepareRevealGroups();
+    if (!revealItems.length || reduceMotion) {
+      document.documentElement.classList.remove('reveal-enabled');
+      revealItems.forEach((item) => item.classList.add('is-revealed'));
+      return;
+    }
+    document.documentElement.classList.add('reveal-enabled');
+    revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const group = revealGroups.get(entry.target.dataset.revealGroup) || [entry.target];
+        if (entry.isIntersecting && revealScrollDirection === 'down') {
+          group.forEach((item) => item.classList.remove('is-revealed'));
+          requestAnimationFrame(() => group.forEach((item) => item.classList.add('is-revealed')));
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -18% 0px' });
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        revealGroups.forEach((group) => revealObserver?.observe(group[0]));
+      });
+    });
+  };
+
+  reducedMotion.addEventListener?.('change', (event) => setScrollReveal(event.matches));
+  window.addEventListener('resize', () => {
+    window.clearTimeout(revealResizeTimer);
+    revealResizeTimer = window.setTimeout(() => setScrollReveal(reducedMotion.matches), 180);
+  }, { passive: true });
+  window.addEventListener('viewchange', () => {
+    revealScrollDirection = 'down';
+    lastRevealScrollY = window.scrollY;
+    const settleViewReveal = () => {
+      revealGroups.forEach((group) => {
+        const rect = group[0].getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) {
+          group.forEach((item) => item.classList.add('is-revealed'));
+        } else if (rect.bottom <= 0) {
+          group.forEach((item) => item.classList.remove('is-revealed'));
+        }
+      });
+    };
+    let settleTicks = 0;
+    const settleTimer = window.setInterval(() => {
+      settleTicks += 1;
+      settleViewReveal();
+      if (settleTicks >= 12) window.clearInterval(settleTimer);
+    }, 100);
+    window.setTimeout(() => { settleViewReveal(); window.clearInterval(settleTimer); }, 1200);
+  });
+  setScrollReveal(reducedMotion.matches);
+})();
+
+/* ================= 斐波那契素材星球（复用原站逻辑） ================= */
+(() => {
+  const scatterStory = document.querySelector('[data-scatter-story]');
+  const scatterStage = document.querySelector('[data-scatter-stage]');
+  const storyFrames = [...(scatterStory?.querySelectorAll('.scatter-story__frame') || [])];
+  if (!scatterStory || !scatterStage || storyFrames.length !== 3) return;
+  const orbit = scatterStage.querySelector('.scatter-stage__orbit');
+  scatterStage.append(orbit);
+
+  const scatterItems = [];
+  const scatterSources = [];
+  PROJECTS_DATA.forEach((project, index) => {
+    if (index > 0 && index % 4 === 2) scatterSources.push(project.src);
+  });
+  const uniqueSources = [...new Set(scatterSources)].slice(0, 30);
+  PROJECTS_DATA.slice(0, 18).forEach((project) => {
+    const item = document.createElement('button');
+    const float = document.createElement('span');
+    const media = document.createElement('img');
+    item.className = 'scatter-stage__item';
+    item.type = 'button';
+    item.setAttribute('aria-label', `放大查看作品素材：${project.title}`);
+    item.setAttribute('aria-pressed', 'false');
+    float.className = 'scatter-stage__float';
+    media.src = project.src;
+    media.alt = project.title;
+    media.decoding = 'async';
+    media.loading = 'eager';
+    float.append(media);
+    item.append(float);
+    orbit.append(item);
+    scatterItems.push({ el: item, project });
+  });
+
+  const spherePoints = [];
+  const perspective = 1120;
+  scatterItems.forEach((entry, index) => {
+    const pointIndex = index + .5;
+    const sphereY = 1 - (2 * pointIndex) / scatterItems.length;
+    const sphereRadius = Math.sqrt(1 - sphereY * sphereY);
+    const theta = Math.PI * (3 - Math.sqrt(5)) * pointIndex;
+    spherePoints.push({ x: Math.cos(theta) * sphereRadius, y: sphereY, z: Math.sin(theta) * sphereRadius });
+    entry.el.style.setProperty('--scatter-float-duration', `${6.2 + (index % 7) * .45}s`);
+    entry.el.style.setProperty('--scatter-float-delay', `${-(index % 9) * .37}s`);
+    entry.el.style.setProperty('--sphere-w', `${68 + (index * 13) % 42}px`);
+  });
+
+  let rotationX = -8, rotationY = 18;
+  let velocityX = 0, velocityY = 0;
+  let lastPointerTime = 0;
+  let transitionUntil = 0;
+  let dragging = false;
+  let moved = false;
+  let pointerX = 0, pointerY = 0;
+  let autoRotating = true;
+  let visible = false;
+  let animFrame;
+  let storyFrame;
+  let currentViewIsArchive = currentView === 'archive';
+
+  const setSelection = (selectedItem) => {
+    const wasExpanded = scatterStage.classList.contains('is-focus');
+    if (!selectedItem && wasExpanded) {
+      scatterStage.classList.add('is-collapsing');
+      transitionUntil = performance.now() + 780;
+      window.setTimeout(() => scatterStage.classList.remove('is-collapsing'), 800);
+    }
+    scatterStage.classList.toggle('is-focus', Boolean(selectedItem));
+    scatterStage.classList.toggle('has-selection', Boolean(selectedItem));
+    scatterItems.forEach((entry) => {
+      const selected = entry.el === selectedItem;
+      entry.el.classList.toggle('is-selected', selected);
+      entry.el.setAttribute('aria-pressed', String(selected));
+    });
+  };
+  scatterItems.forEach((entry) => {
+    entry.el.addEventListener('click', (event) => {
+      event.stopPropagation();
+      setSelection(entry.el.classList.contains('is-selected') ? null : entry.el);
+    });
+  });
+  scatterStage.addEventListener('click', (event) => {
+    if (event.target === scatterStage || event.target === orbit) setSelection(null);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') setSelection(null);
+  });
+
+  const renderSphere = (time = performance.now(), force = false) => {
+    animFrame = undefined;
+    if (!orbit || reducedMotion.matches || (!visible && !force)) return;
+    const isFocused = scatterStage.classList.contains('is-focus');
+    const isTransitioning = time < transitionUntil;
+    if (!dragging && !isFocused && !isTransitioning) {
+      if (Math.abs(velocityX) + Math.abs(velocityY) > .015) {
+        rotationY += velocityX;
+        rotationX = Math.max(-62, Math.min(62, rotationX + velocityY));
+        velocityX *= .94;
+        velocityY *= .94;
+      } else if (autoRotating) {
+        rotationY += .14;
+      }
+    }
+    if (!isFocused) {
+      const angleY = rotationY * Math.PI / 180;
+      const angleX = rotationX * Math.PI / 180;
+      const cosY = Math.cos(angleY), sinY = Math.sin(angleY);
+      const cosX = Math.cos(angleX), sinX = Math.sin(angleX);
+      const radius = Math.min(window.innerWidth * .39, window.innerHeight * .38, 400);
+      const breath = 1 + Math.sin(time / 1550) * .012;
+      spherePoints.forEach((point, index) => {
+        const rotatedX = point.x * cosY + point.z * sinY;
+        const rotatedZ = -point.x * sinY + point.z * cosY;
+        const rotatedY = point.y * cosX - rotatedZ * sinX;
+        const depth = point.y * sinX + rotatedZ * cosX;
+        const projectedDepth = depth * radius;
+        const perspectiveScale = perspective / (perspective - projectedDepth);
+        const screenX = rotatedX * radius * perspectiveScale * breath;
+        const screenY = -rotatedY * radius * perspectiveScale * breath;
+        const item = scatterItems[index].el;
+        item.style.setProperty('--sphere-live-transform', `translate(-50%, -50%) translate3d(${screenX.toFixed(2)}px, ${screenY.toFixed(2)}px, 0) scale(${(perspectiveScale * breath).toFixed(4)})`);
+        item.style.setProperty('--sphere-z', String(Math.round((depth + 1) * 100)));
+        item.style.setProperty('--sphere-depth-opacity', String(.34 + (depth + 1) * .33));
+        if (depth > .08) item.classList.add('is-sphere-front');
+        else if (depth < -.08) item.classList.remove('is-sphere-front');
+      });
+    }
+    if (visible) animFrame = requestAnimationFrame(renderSphere);
+  };
+  const requestSphere = () => {
+    if (!animFrame && visible) animFrame = requestAnimationFrame(renderSphere);
+  };
+
+  renderSphere(performance.now(), true);
+  scatterStage.classList.add('is-ready', 'is-initialized');
+
+  const scatterObserver = new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    requestSphere();
+  }, { threshold: .08 });
+  scatterObserver.observe(scatterStage);
+
+  scatterStage.addEventListener('pointerdown', (event) => {
+    if (event.target.closest('.scatter-stage__item')) return;
+    dragging = true;
+    moved = false;
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    lastPointerTime = performance.now();
+    velocityX = 0; velocityY = 0;
+    autoRotating = false;
+    scatterStage.classList.add('is-dragging');
+    scatterStage.setPointerCapture(event.pointerId);
+  });
+  scatterStage.addEventListener('pointermove', (event) => {
+    if (!dragging || scatterStage.classList.contains('is-focus')) return;
+    const deltaX = event.clientX - pointerX;
+    const deltaY = event.clientY - pointerY;
+    const now = performance.now();
+    const elapsed = Math.max(8, now - lastPointerTime);
+    if (Math.abs(deltaX) + Math.abs(deltaY) > 3) moved = true;
+    rotationY += deltaX * .22;
+    rotationX = Math.max(-62, Math.min(62, rotationX - deltaY * .18));
+    velocityX = (deltaX * .22) * (16.67 / elapsed);
+    velocityY = (-deltaY * .18) * (16.67 / elapsed);
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    lastPointerTime = now;
+    requestSphere();
+  });
+  scatterStage.addEventListener('pointerup', (event) => {
+    if (!dragging) return;
+    dragging = false;
+    scatterStage.classList.remove('is-dragging');
+    if (scatterStage.hasPointerCapture(event.pointerId)) scatterStage.releasePointerCapture(event.pointerId);
+    if (scatterStage.classList.contains('is-focus')) setSelection(null);
+    else if (!moved) { autoRotating = !autoRotating; velocityX = 0; velocityY = 0; }
+    else autoRotating = true;
+    requestSphere();
+  });
+
+  const syncStory = () => {
+    storyFrame = undefined;
+    if (reducedMotion.matches) {
+      storyFrames.forEach((frame) => {
+        frame.style.removeProperty('opacity');
+        frame.style.removeProperty('transform');
+        frame.style.removeProperty('pointer-events');
+      });
+      scatterItems.forEach((entry) => {
+        entry.el.tabIndex = 0;
+        entry.el.style.removeProperty('--scatter-item-opacity');
+        entry.el.style.removeProperty('--scatter-item-scale');
+      });
+      return;
+    }
+    const storyTop = window.scrollY + scatterStory.getBoundingClientRect().top;
+    const travel = Math.max(1, scatterStory.offsetHeight - window.innerHeight);
+    const progress = clamp01((window.scrollY - storyTop) / travel);
+    const sphereProgress = clamp01(progress / .58);
+    const introExitEase = 1 - Math.pow(1 - sphereProgress, 4);
+    const sphereEnterEase = 1 - Math.pow(1 - sphereProgress, 5);
+    const sphereExit = clamp01((progress - .75) / .20);
+    const sphereExitEase = smoothStep(sphereExit);
+    const sphereFade = smoothStep(clamp01((sphereExit - .24) / .76));
+    const outroEnter = clamp01((progress - .84) / .14);
+    const outroEnterEase = 1 - Math.pow(1 - outroEnter, 3);
+    storyFrames[0].style.opacity = (1 - smoothStep((sphereProgress - .04) / .72)).toFixed(4);
+    storyFrames[0].style.transform = `scale(${(1 - .48 * introExitEase).toFixed(4)})`;
+    storyFrames[0].style.pointerEvents = 'none';
+    storyFrames[1].style.opacity = (smoothStep((sphereProgress - .025) / .54) * (1 - sphereFade)).toFixed(4);
+    storyFrames[1].style.transform = `translate3d(0,0,0) scale(${((.7 + .3 * sphereEnterEase) * (1 + .86 * sphereExitEase)).toFixed(4)})`;
+    storyFrames[1].style.pointerEvents = sphereProgress > .55 && sphereExit < .08 ? 'auto' : 'none';
+    storyFrames[2].style.opacity = smoothStep((outroEnter - .015) / .58).toFixed(4);
+    storyFrames[2].style.transform = `translate3d(0,0,0) scale(${(.62 + .38 * outroEnterEase).toFixed(4)})`;
+    storyFrames[2].style.pointerEvents = outroEnter > .72 ? 'auto' : 'none';
+    scatterItems.forEach((entry, index) => {
+      const delay = (index % 7) * .012;
+      const itemProgress = clamp01((sphereProgress - .025 - delay) / .48);
+      const itemEase = 1 - Math.pow(1 - itemProgress, 4);
+      entry.el.style.setProperty('--scatter-item-opacity', smoothStep(itemProgress).toFixed(4));
+      entry.el.style.setProperty('--scatter-item-scale', (.62 + .38 * itemEase).toFixed(4));
+      entry.el.tabIndex = sphereProgress > .72 && sphereExit < .08 ? 0 : -1;
+    });
+    const hint = scatterStage.querySelector('.scatter-hint');
+    if (hint) hint.style.opacity = sphereProgress > .6 && sphereExit < .3 ? '' : '0';
+  };
+  const requestStory = () => {
+    if (storyFrame) return;
+    storyFrame = requestAnimationFrame(syncStory);
+  };
+  window.addEventListener('scroll', requestStory, { passive: true });
+  window.addEventListener('resize', requestStory, { passive: true });
+  document.addEventListener('visibilitychange', requestStory);
+  window.addEventListener('viewchange', requestStory);
+  syncStory();
+
+  const viewChangeHandler = (event) => {
+    currentViewIsArchive = event.detail?.view === 'archive';
+    requestStory();
+  };
+  window.addEventListener('viewchange', viewChangeHandler);
+})();
+
+/* ================= 右侧隐藏式拖动条 ================= */
+(() => {
+  const edgeDrag = $('#edge-drag');
+  const edgeTrack = $('#edge-drag-track');
+  const edgeThumb = $('#edge-drag-thumb');
+  if (!edgeDrag || !edgeTrack || !edgeThumb) return;
+
+  let dragging = false;
+  let thumbRaf = 0;
+
+  const updateThumb = () => {
+    thumbRaf = 0;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const ratio = max > 0 ? window.scrollY / max : 0;
+    const tmax = edgeTrack.clientHeight - edgeThumb.offsetHeight;
+    edgeThumb.style.top = `${(ratio * Math.max(tmax, 0)).toFixed(1)}px`;
+  };
+  const requestThumb = () => { if (!thumbRaf) thumbRaf = requestAnimationFrame(updateThumb); };
+
+  // 鼠标靠近右缘 46px → 显示；离开 → 收起
+  window.addEventListener('mousemove', (e) => {
+    if (e.clientX > window.innerWidth - 46) edgeDrag.classList.add('is-visible');
+    else if (!dragging) edgeDrag.classList.remove('is-visible');
+  }, { passive: true });
+  // 鼠标从右侧区域移出窗口时收起
+  document.documentElement.addEventListener('mouseleave', () => {
+    if (!dragging) edgeDrag.classList.remove('is-visible');
+  });
+
+  const dragStart = (e) => {
+    dragging = true;
+    edgeDrag.classList.add('is-visible', 'is-dragging');
+    edgeThumb.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  };
+  const dragMove = (e) => {
+    if (!dragging) return;
+    const rect = edgeTrack.getBoundingClientRect();
+    const tmax = edgeTrack.clientHeight - edgeThumb.offsetHeight;
+    let y = e.clientY - rect.top - edgeThumb.offsetHeight / 2;
+    y = Math.max(0, Math.min(Math.max(tmax, 0), y));
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    if (max > 0) window.scrollTo(0, (y / Math.max(tmax, 1)) * max);
+    edgeThumb.style.top = `${y.toFixed(1)}px`;
+  };
+  const dragEnd = (e) => {
+    if (!dragging) return;
+    dragging = false;
+    edgeDrag.classList.remove('is-dragging');
+    if (edgeThumb.hasPointerCapture(e.pointerId)) edgeThumb.releasePointerCapture(e.pointerId);
+  };
+
+  edgeThumb.addEventListener('pointerdown', dragStart);
+  edgeThumb.addEventListener('pointermove', dragMove);
+  edgeThumb.addEventListener('pointerup', dragEnd);
+  edgeThumb.addEventListener('pointercancel', dragEnd);
+
+  window.addEventListener('scroll', requestThumb, { passive: true });
+  window.addEventListener('resize', requestThumb, { passive: true });
+  window.addEventListener('viewchange', requestThumb);
+  requestThumb();
+})();
+})();
+</script>
+<!--PART3-->
+</body>
+</html>
