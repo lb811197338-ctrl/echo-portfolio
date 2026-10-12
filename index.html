@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN" class="reveal-enabled">
 <head>
 <meta charset="UTF-8" />
@@ -471,11 +471,25 @@ html.reveal-enabled .scroll-reveal-item.is-retreating:not(.is-revealed) {
 }
 .detail-close:hover { background: var(--ink); color: #fff; }
 .detail-hero {
+  position: relative;
   margin: 0 auto; width: min(1100px, 100%);
   background: #f7f6f4; border: 1px solid rgba(17,16,14,.06);
   display: grid; place-items: center; padding: clamp(20px,3vw,48px);
 }
 .detail-hero img { width: 100%; height: auto; max-height: 66vh; object-fit: contain; }
+.detail-hero .detail-play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: clamp(76px,9vw,100px); height: clamp(76px,9vw,100px); border-radius: 50%;
+  border: none; cursor: pointer; z-index: 2;
+  background: rgba(17,16,14,.58); color: #fff;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  display: grid; place-items: center;
+  box-shadow: 0 10px 34px rgba(17,16,14,.28);
+  transition: background 240ms ease, transform 240ms ease;
+}
+.detail-hero .detail-play:hover { background: rgba(17,16,14,.82); transform: translate(-50%,-50%) scale(1.07); }
+.detail-hero .detail-play svg { width: 36%; height: 36%; margin-left: 8%; }
+.detail-hero video { width: 100%; max-height: 66vh; display: block; background: #101010; object-fit: contain; }
 .detail-heading { margin: clamp(48px,6vh,80px) auto 0; width: min(860px,100%); text-align: center; }
 .detail-heading .cat { font-size: 11px; letter-spacing: .34em; text-indent: .34em; text-transform: uppercase; color: #8a8780; }
 .detail-heading h1 {
@@ -621,6 +635,10 @@ html.reveal-enabled .scroll-reveal-item.is-retreating:not(.is-revealed) {
     </div>
     <figure class="detail-hero">
       <img id="detail-img" alt="" />
+      <button class="detail-play" id="detail-play" type="button" hidden aria-label="播放展示视频">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.4v13.2l11-6.6z"/></svg>
+      </button>
+      <video id="detail-video" controls playsinline preload="metadata" hidden></video>
     </figure>
     <div class="detail-heading">
       <p class="cat" id="detail-category"></p>
@@ -649,7 +667,7 @@ html.reveal-enabled .scroll-reveal-item.is-retreating:not(.is-revealed) {
 
 /* ================= 数据 ================= */
 const PROJECTS_DATA = [
-  { id: 'p01', src: 'https://i.ibb.co/vCYqQ1kz/01.png', title: '酿初 10年 / 商务典藏', client: '京东京造', category: 'Packaging', year: '2025', desc: '深釉蓝立体浮雕搭配哑光波浪肌理，将十年流转具象化；书法字与金色浮雕瓶盖相呼应，传递沉稳内敛的商务礼赠品质。' },
+  { id: 'p01', src: 'work-niangchu10.jpg', title: '酿初 10年 / 商务典藏', client: '京东京造', category: 'Packaging', year: '2025', desc: '深釉蓝立体浮雕搭配哑光波浪肌理，将十年流转具象化；书法字与金色浮雕瓶盖相呼应，传递沉稳内敛的商务礼赠品质。' },
   { id: 'p02', src: 'https://i.ibb.co/VsvdTMD/02.png', title: '西凤酒 / 天启', client: '西凤酒', category: 'Cultural', year: '2025', desc: '极简流线型凤翼棱角瓶型，通透冰蓝与镜面微光相衬，打破传统凤香白酒视觉框架，诠释新生代东方仪轨。' },
   { id: 'p03', src: 'https://i.ibb.co/TD4hKGPD/03.png', title: '酱香小习酒 / 欢聚版', client: '习酒', category: 'Structural', year: '2025', desc: '圆角磨砂通透小瓶，波普风插画定格欢聚瞬间，用轻量化视觉语言打破传统酱酒的沉重认知。' },
   { id: 'p05', src: 'https://i.ibb.co/zW0V6kbs/06.png', title: '金钻习酒 / GOLDEN DIAMOND', client: '习酒', category: 'Limited', year: '2026', desc: '钻石切割工艺贯穿瓶身与瓶盖，香槟金拉丝与立体切面带来丰富光影折射，诠释轻奢珠宝美学。' },
@@ -661,7 +679,8 @@ const PROJECTS_DATA = [
   { id: 'p11', src: 'https://i.ibb.co/gbD53RqH/12.png', title: '海之蓝 / 幽蓝深境', client: '洋河', category: 'Packaging', year: '2024', desc: '流线水滴形制与通透渐变蔚蓝琉璃，重构经典白酒视觉语境，散发清爽深邃的当代美学。' },
   { id: 'p12', src: 'https://i.ibb.co/7dDxvW16/13.png', title: '杜康 / 雅青复古香', client: '杜康', category: 'Cultural', year: '2023', desc: '重塑传统青铜提梁器型，将烫金饕餮纹嵌于典雅粉青瓷身，兼具古雅庄重与现代表达。' },
   { id: 'p13', src: 'https://i.ibb.co/N6BXSCJ5/14.png', title: '摘要 / 书卷金简', client: '金沙', category: 'Identity', year: '2024', desc: '以温润白瓷书卷为体，点缀凹版烫金极简印章，文人雅士的气节与纯粹尽在此中。' },
-  { id: 'p14', src: 'https://i.ibb.co/6R6NPknC/15.png', title: '国窖 1573 / 荣耀红', client: '泸州老窖', category: 'Limited', year: '2023', desc: '通透深红琉璃与五角星金徽映衬，融合现代工艺与百年酿造底蕴，张力十足。' }
+  { id: 'p14', src: 'https://i.ibb.co/6R6NPknC/15.png', title: '国窖 1573 / 荣耀红', client: '泸州老窖', category: 'Limited', year: '2023', desc: '通透深红琉璃与五角星金徽映衬，融合现代工艺与百年酿造底蕴，张力十足。' },
+  { id: 'p15', src: 'https://i.ibb.co/5ybZfnp/05.png', video: 'jiuguijiu-film.mp4', title: '酒鬼酒 / 古陶遗韵', client: '酒鬼酒', category: 'Cultural', year: '2026', desc: '做旧粗陶瓶身暗刻上古云火纹样，牛皮纸封签与红底书法标识相映成趣，镜头流转间尽显文化白酒的拙朴古意。' }
 ];
 
 const ABOUT_ASSETS = {
@@ -761,6 +780,17 @@ if (initialHash && views[initialHash]) switchView(initialHash, false);
 /* ================= 详情浮层 ================= */
 const detailLayer = $('#detail-layer');
 function openDetail(project) {
+  const video = $('#detail-video');
+  const playBtn = $('#detail-play');
+  const img = $('#detail-img');
+  if (!video.hidden) { video.pause(); }
+  video.hidden = true;
+  video.removeAttribute('src');
+  video.load();
+  img.hidden = false;
+  img.style.display = '';
+  playBtn.hidden = !project.video;
+  video.dataset.src = project.video || '';
   $('#detail-img').src = project.src;
   $('#detail-img').alt = project.title;
   $('#detail-title').textContent = project.title;
@@ -775,9 +805,28 @@ function openDetail(project) {
   $('#detail-close').focus({ preventScroll: true });
 }
 function closeDetail() {
+  const video = $('#detail-video');
+  if (!video.hidden) { video.pause(); }
+  video.hidden = true;
+  video.removeAttribute('src');
+  video.load();
+  $('#detail-img').style.display = '';
+  $('#detail-img').hidden = false;
+  $('#detail-play').hidden = true;
   detailLayer.hidden = true;
   document.body.style.overflow = '';
 }
+$('#detail-play').addEventListener('click', () => {
+  const video = $('#detail-video');
+  const src = video.dataset.src;
+  if (!src) return;
+  $('#detail-img').style.display = 'none';
+  $('#detail-play').hidden = true;
+  video.hidden = false;
+  video.src = src;
+  const p = video.play();
+  if (p && typeof p.catch === 'function') p.catch(() => {});
+});
 $('#detail-close').addEventListener('click', closeDetail);
 detailLayer.addEventListener('click', (e) => { if (e.target === detailLayer) closeDetail(); });
 window.addEventListener('keydown', (e) => {
